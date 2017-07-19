@@ -7,6 +7,7 @@ class Submit extends Component {
         super(props);
 
         this.state = {
+            foods: [],
             newFood: {
                 name: '',
                 description: '',
@@ -22,6 +23,15 @@ class Submit extends Component {
         event.preventDefault();
         // this.props.history.push('/');
         // console.log(this.quantity.value);
+        let food = this.state.foods;
+        let name = this.name.value;
+        let description = this.description.value;
+        let ingredients = this.state.newFood.ingredients;
+        food.push(name: name, description: description, ingredients: ingredients);
+
+        this.setState({foods: food});
+        // this.state.foods.push(this.name.value, this.description.value, this.state.newFood.ingredients);
+        console.log(this.state.foods);
     }
     handleName(event) {
         console.log(event.target.value);
@@ -34,7 +44,7 @@ class Submit extends Component {
         // this.setState({
         //     ingredients: {quantity, ingredient}
         // });
-        console.log(this.state.newFood.ingredients);
+        // console.log(this.state.newFood.ingredients);
     }
     render () {
         return (
@@ -48,7 +58,7 @@ class Submit extends Component {
                                     type="text"
                                     className="form-control"
                                     id="name"
-                                    onChange={this.handleName}
+                                    ref={(input) => {this.name = input;}}
                                     placeholder="Name"/>
                             </div>
                             <div className="form-group">
